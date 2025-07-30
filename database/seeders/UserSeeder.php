@@ -6,6 +6,11 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Fee;
+use App\Models\Products;
+use App\Models\Category;
+use App\Models\Machine;
+use App\Models\Shift;
+
 use App\Models\CpeProgram;
 
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +22,21 @@ class UserSeeder extends Seeder
         // Make sure roles exist
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $userRole = Role::firstOrCreate(['name' => 'user']);
+        $supervisorRole = Role::firstOrCreate(['name' => 'supervisor']);
+        $prod_managerRole = Role::firstOrCreate(['name' => 'production_manager']);
+        $operatorrRole = Role::firstOrCreate(['name' => 'operator']);
+
+
+        $shift = Shift::firstOrCreate(['name' => 'Shift-1']);
+        $shift = Shift::firstOrCreate(['name' => 'Shift-2']);
+        $shift = Shift::firstOrCreate(['name' => 'Shift-3']);
+
+         $machine = Machine::firstOrCreate(['name'=>'printing_machine-1','machine_no'=>'01','details'=>'prining roll']);
+         $machine = Machine::firstOrCreate(['name'=>'printing_machine-2','machine_no'=>'02','details'=>'prining roll']);
+
+         $machine = Machine::firstOrCreate(['name'=>'Slitting_machine','machine_no'=>'01','details'=>'rewind,splitting,joining']);
+         $machine = Machine::firstOrCreate(['name'=>'poucing','machine_no'=>'01','details'=>'pouch']);
+         $machine = Machine::firstOrCreate(['name'=>'packing','machine_no'=>'01','details'=>'packaging']);
 
         // Create admin user
         $admin = User::create([
@@ -26,24 +46,59 @@ class UserSeeder extends Seeder
             'role_id' => $adminRole->id, // for single-role setup
             'email_verified_at'=>'2025-06-28 18:18:17'
         ]);
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@eraffles.com',
+            'password' => Hash::make('password123'), // Set secure password
+            'role_id' => $userRole->id, // for single-role setup
+            'email_verified_at'=>'2025-06-28 18:18:17'
+        ]);
+        $supervisor = User::create([
+            'name' => 'Supervisior ',
+            'email' => 'supervisor@eraffles.com',
+            'password' => Hash::make('password123'), // Set secure password
+            'role_id' => $supervisorRole->id, // for single-role setup
+            'email_verified_at'=>'2025-06-28 18:18:17'
+        ]);
 
         // Create normal user
-        $user = User::create([
-            'name' => 'Normal User',
-            'email' => 'user@eraffles.com',
+        $operatorrRole = User::create([
+            'name' => 'operator',
+            'email' => 'operator@eraffles.com',
             'password' => Hash::make('password123'),
-            'role_id' => $userRole->id,
+            'role_id' => $operatorrRole->id,
             'email_verified_at'=>'2025-06-28 18:18:17'
 
         ]);
-        $user = CpeProgram::create([
-            'date' => '2025-06-28',
-            'name' => 'Refresher course 4 hrs',
-            'venue' => 'Online',
-            'status' => '1',
-            'certificate_template' => 'cpe_templates\1Vw9Q8PQfWi4Wzs3uXjVXcylUNfwvVCQ3Xsy873a.pdf',
-            'course_content' => 'https://www.youtube.com/watch?v=JYgdC4EQxUo'
+         $prodmanagerRole = User::create([
+            'name' => 'prod_manager',
+            'email' => 'pm@eraffles.com',
+            'password' => Hash::make('password123'),
+            'role_id' => $prod_managerRole->id,
+            'email_verified_at'=>'2025-06-28 18:18:17'
+
         ]);
+
+         $Categories = [
+            ['name' => 'Film'],
+            ['name' => 'Ink'],
+            ['name' => 'Solvent'],
+            ['name' => 'Tape'],
+         ];
+          foreach ($Categories as $Category) {
+                Category::create($Category);
+            }
+       
+             $Products = [
+            ['name' => 'LD'],
+            ['name' => 'MOPP'],
+            ['name' => 'PET'],
+            ['name' => 'Slicking Tape'],
+         ];
+          foreach ($Products as $Product) {
+                Products::create($Product);
+            }
+       
 
     
                $fees = [

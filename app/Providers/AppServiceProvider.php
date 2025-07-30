@@ -52,7 +52,8 @@ class AppServiceProvider extends ServiceProvider
                 $menu[] = menuItemWithLabel('Masters', 'admin/masters', 'fas fa-fw fa-cogs', $mastercount);
                 $menu[] = menuItemWithLabel('GRN', '/goods-receipt-notes', 'fas fa-fw fa-cogs', $mastercount);
                 $menu[] = menuItemWithLabel('Purchase Order', '/purchaseorder', 'fas fa-fw fa-cogs', $mastercount);
-                 $menu[] = menuItemWithLabel('Job-Cards', '/jobcards', 'fas fa-fw fa-cogs', $mastercount);
+                $menu[] = menuItemWithLabel('Job-Cards', '/jobcards', 'fas fa-fw fa-cogs', $mastercount);
+                $menu[] = menuItemWithLabel('Re-winding Process', '/rewinding', 'fas fa-fw fa-cogs', $mastercount);
                 $menu[] = menuItemWithLabel('Printing-Process', '/printingprocess', 'fas fa-fw fa-cogs', $mastercount);
 
                 $menu[] = menuItemWithLabel('inspection', '/inspection', 'fas fa-fw fa-cogs', $mastercount);
@@ -61,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
                 $menu[] = menuItemWithLabel('folding', '/folding', 'fas fa-fw fa-cogs', $mastercount);
                 $menu[] = menuItemWithLabel('pouching', '/pouching', 'fas fa-fw fa-cogs', $mastercount);
                 $menu[] = menuItemWithLabel('production process', '/production_process', 'fas fa-fw fa-cogs', $mastercount);
-               
+
 
 
 

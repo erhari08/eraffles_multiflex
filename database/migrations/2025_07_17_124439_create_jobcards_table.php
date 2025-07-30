@@ -11,8 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         Schema::create('jobcards', function (Blueprint $table) {
             $table->id();
+            $table->string('jobcard_no')->unique();
+            $table->string('job_name');
+            $table->string('tot_kgs');
+            $table->string('wastage');
+            $table->string('total');
+            $table->string('formOfOutput');
+            $table->string('wtperpouch');
+            $table->string('tot_roll_wt');
+            $table->json('printing');
+            $table->json('lamination');
+            $table->json('folding');
+            $table->json('pouching');
+            $table->unsignedTinyInteger('status')->default(0); // 0 = Pending, 1 = In Progress, 2 = Completed
             $table->timestamps();
         });
     }
